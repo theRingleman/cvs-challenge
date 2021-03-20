@@ -21,6 +21,6 @@ export class IndexedMovieEntity {
 
   @AfterLoad()
   updateBudget() {
-    this.budget = '$' + parseInt(this.budget).toFixed(2);
+    this.budget = '$' + parseInt(this.budget, 10).toFixed(2);
   }
 }
