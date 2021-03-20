@@ -1,7 +1,7 @@
-import {AfterLoad, Column, Entity, PrimaryGeneratedColumn} from 'typeorm';
-import {Exclude} from "class-transformer";
+import { AfterLoad, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
+import { Exclude } from 'class-transformer';
 
-@Entity({name: 'movies'})
+@Entity({ name: 'movies' })
 export class IndexedMovieEntity {
   @Exclude()
   @PrimaryGeneratedColumn()
@@ -21,6 +21,6 @@ export class IndexedMovieEntity {
 
   @AfterLoad()
   updateBudget() {
-    this.budget = "$" + parseInt(this.budget).toFixed(2);
+    this.budget = '$' + parseInt(this.budget).toFixed(2);
   }
 }

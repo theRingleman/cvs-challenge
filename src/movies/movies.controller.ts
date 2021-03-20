@@ -1,8 +1,8 @@
-import {Controller, Get, Param, Query} from '@nestjs/common';
+import { Controller, Get, Param, Query } from '@nestjs/common';
 import { MoviesService } from './movies.service';
 import { Pagination } from 'nestjs-typeorm-paginate';
 import { IndexedMovieEntity } from './entities/indexedMovie.entity';
-import {MovieEntity} from "./entities/movie.entity";
+import { MovieEntity } from './entities/movie.entity';
 
 @Controller('movies')
 export class MoviesController {
@@ -21,7 +21,11 @@ export class MoviesController {
     @Query('page') page: number = 1,
     @Param('year') year: number,
   ): Promise<Pagination<IndexedMovieEntity>> {
-    return this.moviesService.findAllByYear(MoviesController.DEFAULT_LIMIT, page, year);
+    return this.moviesService.findAllByYear(
+      MoviesController.DEFAULT_LIMIT,
+      page,
+      year,
+    );
   }
 
   @Get('/genre/:genre')
@@ -29,7 +33,11 @@ export class MoviesController {
     @Query('page') page: number = 1,
     @Param('genre') genre: string,
   ): Promise<Pagination<IndexedMovieEntity>> {
-    return this.moviesService.findAllByGenre(MoviesController.DEFAULT_LIMIT, page, genre)
+    return this.moviesService.findAllByGenre(
+      MoviesController.DEFAULT_LIMIT,
+      page,
+      genre,
+    );
   }
 
   @Get('/:id')

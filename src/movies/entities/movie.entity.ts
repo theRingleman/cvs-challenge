@@ -1,7 +1,6 @@
-import {AfterLoad, Column, Entity, OneToMany, PrimaryGeneratedColumn} from 'typeorm';
-import {RatingEntity} from "./rating.entity";
+import { AfterLoad, Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({name: 'movies'})
+@Entity({ name: 'movies' })
 export class MovieEntity {
   @PrimaryGeneratedColumn()
   movieId: number;
@@ -43,6 +42,6 @@ export class MovieEntity {
 
   @AfterLoad()
   updateBudget() {
-    this.budget = "$" + parseInt(this.budget).toFixed(2);
+    this.budget = '$' + parseInt(this.budget).toFixed(2);
   }
 }

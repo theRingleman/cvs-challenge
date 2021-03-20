@@ -1,7 +1,6 @@
-import {Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn} from "typeorm";
-import {MovieEntity} from "./movie.entity";
+import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
-@Entity({name: "ratings"})
+@Entity({ name: 'ratings' })
 export class RatingEntity {
   @PrimaryGeneratedColumn()
   ratingId: number;
