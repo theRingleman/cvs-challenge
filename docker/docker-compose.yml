@@ -1,0 +1,18 @@
+version: '3.3'
+services:
+  aetna-api:
+    build:
+      context: ..
+      dockerfile: ./docker/Dockerfile
+    ports:
+      - 8080:3000
+    volumes:
+      - '..:/usr/src/app'
+      - '..:/usr/src/db'
+    command: 'npm run start:dev'
+    networks:
+      - aetna-net
+
+networks:
+  aetna-net:
+    name: aetna-net
