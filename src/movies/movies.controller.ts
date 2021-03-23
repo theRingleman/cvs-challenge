@@ -18,30 +18,6 @@ export class MoviesController {
     return this.moviesService.indexMovies(MoviesController.DEFAULT_LIMIT, page, year, genre);
   }
 
-  @Get('/year/:year')
-  public indexByYear(
-    @Query('page') page: number = 1,
-    @Param('year') year: number,
-  ): Promise<Pagination<IndexedMovieEntity>> {
-    return this.moviesService.findAllByYear(
-      MoviesController.DEFAULT_LIMIT,
-      page,
-      year,
-    );
-  }
-
-  @Get('/genre/:genre')
-  public indexByGenre(
-    @Query('page') page: number = 1,
-    @Param('genre') genre: string,
-  ): Promise<Pagination<IndexedMovieEntity>> {
-    return this.moviesService.findAllByGenre(
-      MoviesController.DEFAULT_LIMIT,
-      page,
-      genre,
-    );
-  }
-
   @Get('/:id')
   public show(@Param('id') id: number): Promise<MovieEntity> {
     return this.moviesService.findOne(id);
