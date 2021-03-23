@@ -18,6 +18,9 @@ export class MoviesService {
   ) {}
 
   indexMovies(limit: number, page: number, year?: number, genre?: string): Promise<Pagination<IndexedMovieEntity>> {
+    if(year && genre) {
+      return this.indexByYearAndGenre(limit, page, genre, year);
+    }
     if(year) {
       return this.findAllByYear(limit, page, year);
     }
@@ -82,6 +85,17 @@ export class MoviesService {
   private static calculateAverageRating(ratings: RatingEntity[]): number {
     return (
       ratings.reduce((acc, rating) => acc + rating.rating, 0) / ratings.length
+    );
+  }
+
+  private indexByYearAndGenre(limit: number, page: number, genre: string, year: number): Promise<Pagination<IndexedMovieEntity>>{
+    return paginate(
+      this.indexedMoviesRepository
+        .createQueryBuilder('m')
+        .where("strftime('%Y', m.releaseDate) = :year", { year })
+        .andWhere(`m.genres like '%${genre}%'`)
+        .orderBy('m.releaseDate', 'DESC'),
+      {limit, page}
     );
   }
 }
