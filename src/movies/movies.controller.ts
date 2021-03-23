@@ -12,8 +12,10 @@ export class MoviesController {
   @Get()
   public index(
     @Query('page') page: number = 1,
+    @Query('year') year?: number,
+    @Query('genre') genre?: string
   ): Promise<Pagination<IndexedMovieEntity>> {
-    return this.moviesService.findAll(MoviesController.DEFAULT_LIMIT, page);
+    return this.moviesService.indexMovies(MoviesController.DEFAULT_LIMIT, page, year, genre);
   }
 
   @Get('/year/:year')

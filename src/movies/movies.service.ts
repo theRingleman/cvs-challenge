@@ -17,6 +17,16 @@ export class MoviesService {
     private ratingsRepository: Repository<RatingEntity>,
   ) {}
 
+  indexMovies(limit: number, page: number, year?: number, genre?: string): Promise<Pagination<IndexedMovieEntity>> {
+    if(year) {
+      return this.findAllByYear(limit, page, year);
+    }
+    if(genre) {
+      return this.findAllByGenre(limit, page, genre);
+    }
+    return this.findAll(limit, page);
+  }
+
   findAll(
     limit: number,
     page: number,

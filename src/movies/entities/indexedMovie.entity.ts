@@ -3,7 +3,7 @@ import { Exclude } from 'class-transformer';
 
 @Entity({ name: 'movies' })
 export class IndexedMovieEntity {
-  @Exclude()
+  // @Exclude()
   @PrimaryGeneratedColumn()
   movieId: number;
 
